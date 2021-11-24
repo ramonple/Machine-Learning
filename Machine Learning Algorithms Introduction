@@ -1,0 +1,255 @@
+Commonly used Machine Learning Algorithms (with R Codes)
+
+https://www.analyticsvidhya.com/blog/2017/09/common-machine-learning-algorithms/   （English）
+https://www.jiqizhixin.com/articles/2019-03-19-9      （Chinese）
+https://easyai.tech/en/ai-definition/machine-learning/  （translated to English)
+
+Broadly, there are 3 types of Machine Learning Algorithms：
+
+1. Supervised Learning
+Supervised learning means that we give the algorithm a data set and give the correct answer. 
+The machine uses data to learn how to calculate the correct answer.
+This algorithm consist of a target / outcome variable (or dependent variable) which is to be predicted from a given set of predictors (independent variables). 
+Using these set of variables, we generate a function that map inputs to desired outputs. 
+The training process continues until the model achieves a desired level of accuracy on the training data. 
+Examples of Supervised Learning: Regression, Decision Tree, Random Forest, KNN, Logistic Regression etc.
+
+2. Unsupervised Learning
+In this algorithm, we do not have any target or outcome variable to predict / estimate. It is used for clustering population in different groups, 
+which is widely used for segmenting customers in different groups for specific intervention. 
+Examples of Unsupervised Learning: Apriori algorithm, K-means.
+
+3. Reinforcement Learning:
+Using this algorithm, the machine is trained to make specific decisions. 
+It works this way: the machine is exposed to an environment where it trains itself continually using trial and error. 
+This machine learns from past experience and tries to capture the best possible knowledge to make accurate business decisions. 
+Example of Reinforcement Learning: Markov Decision Process
+
+Differences  betweeen supervised and unsupervised learning:
+a. Supervised learning is a purpose-based training method, and you know what you get;
+Unsupervised learning is a training method with no clear purpose. You can't know in advance what the result is.
+b. Supervised learning needs to label data; Unsupervised learning does not require labeling data.
+c. Supervised learning can measure results because the goals are clear; Unsupervised learning can hardly quantify the effect.
+
+
+
+-------------------------------------- supervised learning  --------------------------------------
+Supervised learning has 2 main tasks
+a. Regression (Return)
+b. Category
+
+Regression: predicts continuous, specific values. For example: Alipay credit score in Alipay (more on this below)
+Classification: Divide various things for discrete types (What is discrete?) prediction.
+
+< Return case: How did the sesame credit score come from? >
+The credit scores from the FICO scoring system range from 300 to 850. The higher the score, the smaller the credit risk.
+FICO: A FICO score is a credit score created by the Fair Isaac Corporation (FICO).
+FICO scores are widely used by many types of creditors, including lenders, credit card issuers and insurance providers 
+to gauge your credit risk — that is, how likely you are to repay the money loaned to you. The higher your credit scores, 
+the more likely you'll end up with better rates and terms on your loan.
+
+Step 1: Build the problem, select the model
+We first find out the influencing factors of personal credit: payment record(1),total accountt amount(2),credit history span(3),
+new accounts(4), credit category(5).
+At this time, we built a simple model: Y = f (A,B,C,E,D,E). 
+f can be simply understood as a specific formula that associates 5 factors with personal credit scores.
+
+Step 2: Collecting known data
+In order to find this formula f, we need to collect a large amount of known data, which must contain a person's 5 data and his/her 
+credit status (convert the credit status to a score).
+We divide the data into several parts, one for training and one for testing and verification. ( the split is somewhere on the order of 60%,20%,20%).
+
+Step 3: Train the ideal model
+With these data, we can "guess" the relationship between these five types of data and credit scores through machine learning. 
+This relationship is the formula f.
+Then we use the verification data and test data to verify that the formula is OK.
+
+Step 4: Forecasting new users
+When we want to know the credit status of a new user, we only need to collect his 5 data, and put it into the formula f to calculate 
+the result once again!
+
+< "Classification" case: How to predict divorce>
+Step 1: Build the problem, select the model
+Gottman suggested that the dialogue can reflect the potential problems between husband and wife, 
+and their quarrels, laughter, teasing and emotional expression in the dialogue create some kind of 
+emotional connection. Through the emotional associations in these conversations, couples can be divided into 
+different types, representing different divorce probabilities.
+
+Step 2: Collecting known data
+
+The researchers invited 700 to participate in the experiment. They sit alone in a room and talk about a controversial topic, 
+such as money and sex, or relationships with in-laws. Murray and Gottman let each couple continue to talk about this topic 15 
+minutes and shoot the process. After watching the videos, the observers rate them according to the conversation between the 
+husband and the wife.
+They give scores to different Categories, which include:
+humor, aggreement, disaggreement, happeniess, like, dislike, interesting,ingore, complain, and ect.
+
+Step 3: Train the ideal model
+
+Gottman's method is not machine learning to get results, but the principles are similar. 
+He got the following conclusions: 
+First, they plot the scores of both husband and wife on a chart, and the intersection of the two lines can indicate whether the 
+marriage will last for a long time. If the husband or wife continues to score negative points, the two are likely to go to divorce. 
+The focus is on quantifying the ratio of positive and negative effects in conversation. The ideal ratio is 5:1, and if it is lower 
+than this ratio, the marriage will have problems. Finally, the results are placed on a mathematical model that uses the difference 
+equation to highlight the potential characteristics of a successful marriage.
+
+They classify all couples into 5 categories:
+1. Happy couple: Calm, intimate, mutual support, and friendly. They prefer to share experiences.
+2. Invalid couple: They do their best to avoid conflicts, just by responding positively to each other.
+3. Changeable couple: They are romantic and enthusiastic, and they can be very heated. They are sometimes unstable and sometimes unstable, but in general they are not very happy.
+4. Hostile coupleOne party does not want to talk about something, the other party agrees, so there is no communication between the two.
+5. Husband and wifeOne party is eager to argue, but the other party is not interested in the topic of discussion.
+
+Step 4: Forecasting new users
+Every two or two years since 12, Murray and Gottman will interact with the 700 couple who participated in the study. 
+The two-person formula predicts the divorce rate to an accuracy of 94%.
+
+
+Mainstream supervised learning algorithm
+---------------------------------------------------------------------------------------------------------------------------------------
+algorithm	                 Types of	           Introduction
+---------------------------------------------------------------------------------------------------------------------------------------
+Naive Bayes 	             Category	           Bayesian classification is a statistical classification method based on Bayesian's theorem. It classifies by predicting the probability that a given tuple belongs to a particular class. The naive Bayesian classification assumes that the effect of an attribute value on a given class is independent of other attributes - class conditional independence.
+Decision tree	             Category	           A decision tree is a simple but widely used classifier that builds a decision tree by training data to classify unknown data.
+SVM	                       Category	           The support vector machine transforms the classification problem into the problem of finding the classification plane, and realizes the classification by maximizing the distance between the classification boundary points and the classification plane.
+Logistic regression	       Category	           Logistic regression is a regression problem for dealing with dependent variables as categorical variables. Commonly, it is a binary or binomial distribution problem. It can also deal with multi-classification problems. It actually belongs to a classification method.
+Linear regression	          Return	           Linear regression is one of the most commonly used algorithms for dealing with regression tasks. The form of the algorithm is very simple, it is expected to use a hyperplane to fit the data set (only two lines are a straight line).
+Return tree	                Return	           The regression tree (a type of decision tree) implements hierarchical learning by repeatedly dividing the data set into different branches. The criterion for segmentation is to maximize the information gain for each separation. This branching structure allows the regression tree to naturally learn nonlinear relationships.
+K proximity   	Classification + regression	   New data points are predicted by searching the entire training set of the K most similar instances (neighbors) and summarizing the output variables of those K instances.
+Adaboosting	     Classification + regression	 AdaboostThe goal is to learn a series of weak classifiers or basic classifiers from the training data, and then combine these weak classifiers into one strong classifier.
+Neural Networks	 Classification + regression	 It abstracts the human brain neuron network from the perspective of information processing, establishes a simple model, and forms different networks according to different connection methods.
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------- unsupervised learning  ------------------------------------------------------------------------
+In unsupervised learning, there is no "correct answer" for a given data set, and all data is the same. The task of unsupervised learning is 
+to mine out the underlying structure from a given data set.
+
+We give a bunch of pictures of cats and dogs to the machine, don't label these photos, but we want the machine to sort the photos.
+Through learning, the machine will divide these photos into 2 categories, all of which are photos of cats, all of which are photos of dogs.
+Although the results of supervised learning above seem similar, there are essential differences:
+
+In unsupervised learning, although the photos are divided into cats and dogs, the machine does not know which one is a cat and which is a dog.
+For the machine, it is equivalent to divided into two categories, A and B.
+
+It mainly has 3 features:
+1.Unsupervised learning has no clear purpose
+2.Unsupervised learning does not require labeling data
+3.Unsupervised learning cannot quantify results
+
+Case 1: Found an exception
+There are many illegal activities that require "money laundering". These money laundering activities are different from the behavior of 
+ordinary users. What is the difference?
+If it is a very expensive and complicated thing to analyze by humans, we can classify the users by the characteristics of these behaviors, 
+it is easier to find those users with abnormal behaviors, and then analyze in depth how their behaviors are different. 
+Whether it is in the scope of illegal money laundering.
+Through unsupervised learning, we can quickly classify behaviors. Although we don't know what these classifications mean, through this 
+classification, we can quickly expel normal users and conduct more in-depth analysis of abnormal behaviors.
+
+Case 2: User Segmentation
+This makes sense for the advertising platform. We not only classify users by gender, age, geographic location, etc., but also classify users 
+by user behavior.
+With user segmentation in many dimensions, ad serving can be more targeted and better.
+
+Case 3: Recommendation System
+Everyone has heard the story of "beer + diapers". This story is an example of recommending related products based on users' buying behavior.
+For example, when you shop on Taobao, Tmall, and JD.com, you will always recommend some related products based on your browsing behavior. 
+Some products are recommended through clustering through unsupervised learning. The system will find some users with similar purchase 
+behaviors and recommend the most "favorite" products of such users.
+
+
+Common 2 class unsupervised learning algorithms
+a. clustering
+b. dimensionality reduction
+
+Clustering: Simply put, it is an automatic classification method. In supervised learning, you know exactly what each category is, but 
+clustering is not. You don't know what each of the several categories after clustering mean.
+
+Dimensionality reduction: Dimensionality looks a lot like compression. This is to reduce the complexity of the data while keeping the 
+relevant structure as much as possible.
+
+---------------------- k means ------------------------
+"clustering algorithm" K-means clustering (grouping data based on similarity patterns based on distance）
+K-means clustering is a simple and elegant approach for partitioning a data set into K distinct, non-overlapping clusters. 
+To perform K-means clustering, we must first specify the desired number of clusters K.
+The K-means algorithm aims to choose centroid that minimise the within-cluster sum-of-squares criterion:
+       sum (i from 0  to n )[ min ( ||x_i - u_j | | ^2]
+       
+Step 1. Determine the value “K”, the value “K” represents the number of clusters.
+Step 2. Randomly select K distinct centroid (new data points as cluster initialization)
+Step 3. Measure the distance (euclidean distance) between each point and the centroid
+Step 4. Assign the each point to the nearest cluster
+Step 5. Calculate the mean of each cluster as new centroid
+Step 6. Repeat step 3–5 with the new center of cluster
+
+Repeat until stop:
+Convergence. (there is no further changes of centriod)
+Maximum number of iterations reaches.
+
+Step 7. Calculate the variance of each cluster
+[Since K-means clustering can’t “see” the best clustering, it is only option is to keep track of these clusters, 
+and their total variance, and do the whole thing over again with different starting points. ]
+Step 8. Repeat step 2–7 until get the lowest sum of variance
+
+
+----------------------  hierarchical clustering  ----------------------
+"clustering algorithm" hierarchical clustering
+If you don't know that it should be divided into several categories, then hierarchical clustering is more suitable. 
+Hierarchical clustering builds a multi-level nested classification, similar to a tree structure.
+
+The steps of hierarchical clustering are as follows:
+1 Start with N clusters, one cluster per data point.
+2 Combine the two clusters that are closest to each other into one. Now you have N-1 clusters.
+3 Recalculate the distance between these clusters.
+4 Repeat the 2 and 3 steps until you get a cluster of N data points.
+5 Select a number of clusters and then draw a horizontal line in the tree.
+
+
+----------------------  PCA ---------------------- 
+Principal component analysis of "dimensionality reduction algorithm"-PCA
+
+Principal component analysis is the conversion of multiple indicators into a few comprehensive indicators.
+
+Principal component analysis often uses features that reduce the dimensionality of the data set while maintaining the largest contribution 
+of the data set. This is done by preserving the low-order principal components and ignoring the higher-order principal components. 
+Such low-order components tend to retain the most important aspects of the data.
+
+Steps to transform:
+Step 1: Standardize the dataset.
+Step 2: Calculate the covariance matrix for the features in the dataset.
+Step 3: Calculate the eigenvalues and eigenvectors for the covariance matrix.
+Step 4: Sort eigenvalues and their corresponding eigenvectors.
+Step 5: Pick k eigenvalues and form a matrix of eigenvectors.
+Step 6: Transform the original matrix.
+
+https://www.keboola.com/blog/pca-machine-learning
+
+assumptions and limitations:
+PCA assumes a correlation between features.
+PCA is sensitive to the scale of the features.
+PCA is not robust against outliers.
+PCA assumes a linear relationship between features.
+
+
+
+
+------------------------------------- Reinforcement learning  ------------------------------------------------------------------------
+Reinforcement learning is not a specific algorithm, but a general term for a class of algorithms.
+If used for comparison, he is similar to supervised learning, unsupervised learning, and is a collective learning method.
+The most typical scene is playing games.
+
+Application scenarios for reinforcement learning
+Intensive learning is not mature enough at present, and the application scenarios are relatively limited. 
+The biggest application scenario is the game.
+
+
+
+
+
+
+
+
+
+
+
