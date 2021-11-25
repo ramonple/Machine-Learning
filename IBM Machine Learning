@@ -26,32 +26,75 @@ Residuals: standardized
 ## sns.displot(data,bins=20);  -- histogram
 ## sns.boxplot(data); -- boxplot
 
-
 EDA Exploratory Data Analysis
 EDA is going to be the approach to analyzing data sets to summarize their main characteristics, often with visual methods, and as we'll see what's statistical summary is as well. 
 visualizations: histograms, scatter plot, boxplot,...
 
 
+Data Transformations:
+a. Log transformations. y= b0 + b1 log(x)
+b. Polynomial transformation y= b0 + b1x + b2x^2 + b3x^3
+Variable Selection: involves choosing the set of features in include in the model. Variables must often be transformed, as mentioned before, before they can even 
+be included in our models. In addition to a log and polynomial transformation, this can involve:
+c. Encoding: converting non-numeric features such as categorical or ordinal features to numeric features
+d. Scaling: which will be just converting the scale of numeric data so that they're on a comparable scale.
+
+Encoding is often applied to 'categorical features' (non-numeric): nomial (red,green,blue), ordinal (high,medium,low)
+- Binary encoding : 0 or fail, 1 for success
+- one-hot encoding: converts variables tha take multiple values into binary(0,1) variables. One for each category.
+- Ordinary encoding: convery catogories into numbers, 0,1,2,3,4
+
+Feature Scalling involves adjusting a variables scale. Different continuous features often have differnt scales.
+- standard scaling: converts features to standard normal variables
+- min-max scaling: convert variables to continous variables in the (0,1) interval by mapping a minimum values to0 and maximum to 1.
+                   This type of scaling is sensitive to outliers.
+- Robust scaling: is similar to min-max scaling, but instead maps the interquartile range to (0,1).
+
+Common variable transformation:
+Feature Type                                      Transformation
+Continuous: numerical values                      - standard, min-max scaling, robust scaling
+- Nominal: Categorical, unordered features        - binary, one-hot encoding
+- Ordinal: categorical, ordered featuers          - ordinal encoding (0,1,2,3,4)
 
 
+Estimation and Inference
+
+Estimation is the application of an algorithm, e.g., taking an averange.
+Inference: involves putting an accuracy on the estimated (std).
+
+parametric vs. non-parametric
+      
+Frequentist vs. Bayesian Statistics
+
+A frequentiest is concerned with repeated observations in the limit.
+Approach:
+1. derive the probabilstic property of a procedure
+2. apply the probability directly to the obsevered data
+
+Bayesian describes parameters by probability distribution. Before seeing any data, a prioir distirbution is formulated.
+The prioir distribution is then updated aftering seeing the data. After updating, the distribution is called the posterioir distribution.
+
+The element that differs in the interpretation.
 
 
+The p-value is just the smallest significance level at which the null hypothesis would be rejected. 
+But once you have chosen a significance level, e.g. 0.05, it is incorrect to interpret p-values in reference to how close they are to your significance level.
+
+Hypothesis Testing
+A hypothesis is a statemnet about a population parameter.
+
+likelihood ratio is called a test statistic, we use it to decide whether to reject H0 or not.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Correlation vs. Causation
+A correlation between variables, however, does not automatically mean that the change in one variable is the cause of the change in the values of the 
+other variable. Causation indicates that one event is the result of the occurrence of the other event; i.e. there is a causal relationship between the 
+two events.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------  Course 2 --------------------------------------------------------------------------------------------------------
