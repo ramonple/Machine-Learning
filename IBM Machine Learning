@@ -10,11 +10,26 @@ outliers
 data sourcing issues: multiple systems, different database types, ...
 
 Missing data:
-remove the data: remove the rows entirely
+Remove the data: remove the row(s) entirely
+Impute the data: replace with substitued values. Fill in the missing data with the most common value, the average value, etc.
+Mask the data: create a catergory for missing values
+
+Outliers
+( An outlier is an observation in data that is distant from most other observations.)
+It is important to remember that some outliers are informative and provide insights into the data.
+
+How  to find outliers?
+Plots: Histogram, Density Plot, Box plot
+Statistics: standard deviation, interquartile range (iqr = q75-q25), min/ max limits to be considered an outlier min =q25-1.5*(iqr); max=q75+1.5*(iqr)
+Residuals: standardized
+
+## sns.displot(data,bins=20);  -- histogram
+## sns.boxplot(data); -- boxplot
 
 
-
-
+EDA Exploratory Data Analysis
+EDA is going to be the approach to analyzing data sets to summarize their main characteristics, often with visual methods, and as we'll see what's statistical summary is as well. 
+visualizations: histograms, scatter plot, boxplot,...
 
 
 
