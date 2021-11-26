@@ -282,6 +282,11 @@ multi-class error metircs: similar to binary versions, just expand elements as a
 
 ---------------------------------------------- K Nearest Neighbors (KNN) for Classification ------------
 
+I see kNN as an algorithm that comes from real life. People tend to be effected by the people around them. 
+Our behaviour is guided by the friends we grew up with. Our parents also shape our personality in some ways. 
+If you grow up with people who love sports, it is higly likely that you will end up loving sports. 
+There are ofcourse exceptions. kNN works similarly.
+
 What is needed to KNN?
 a. correct value for K
 b. How to measure closeness of neighborrs
@@ -293,7 +298,26 @@ Manhattan Distance d= |x1-x2|  + |y1-y2|
 Scale for distance measurement:
 feature scaling
 
+STEP 1: Define space and distance function
+STEP 2: Input (UN-)known smaples
+STEP 3: Find Top K nearest Samples
+STEP 4: Find the majorities in the K nearest neighbor
 
+Pros and cons of k-Nearest-Neigbors
+Pros
+Simple and easy to interpret
+Does not make any assumption so it can be implemented in non-linear tasks.
+Works well on classification with multiple classes
+Works on both classification and regression tasks
+Only focus on local distribution
+Cons
+Becomes very slow as the number of data points increases because the model needs to store all data points.
+Not memory efficient
+Sensitive to outliers. Outliers also have a vote!
+Only focus on local distribution
+Sensitive to the value of K
+
+More exmples: recommnadations systems for video website
 
 
 ！！！ -------------------------------------------- Support Vector Machines  SVM----------------
@@ -302,15 +326,60 @@ Then, we perform classification by finding the hyper-plane that differentiates t
 Maximizing the distances between nearest data point (either class) and hyper-plane will help us to decide the right hyper-plane.
 
 We have a <decision boundary /decision surface > b1x1+b2x2+b0 = 0 
-we should also plot two lines which are parellel to this decision boundary, and 
+we should also plot two lines which are parellel to this decision boundary, and this two lines should cross two support vectors, one
+from each class, and these two lines are called the margin boundary. SVMs maximize the margin between these two parallel lines. The support vectors are the points closet to the decision line.
+
 
 Linear classifier
 Object: find the best beta to describe the margin boundary (hyper-plane)
-dis = 2/||beta|| --> Maximize 
+
+Margin boundary:
+b1x1+b2x2+b0=1
+b1x1+b2x2+b0=-1
+
+The distance between these two margin boundaries: dis = 2/||beta|| --> Maximize 
   => min ||Beta||^2 /2
 
+SVM loss function:   Loss(beta) = || beta || ^ 2/ 2. HARD MARGIN SVM -> Linear classifier -> soft margin SVM
+Kernel SVM. -> enable them to operate in a high-dimensiona
+
+Margin of Separation (d): the separation between the hyperplane and the closest data point for a given weight vector w and bias.
+
+Optimal Hyperplane (maximal margin): the particular hyperplane for which the margin of separation d is maximized.
+
+use line linear SVMs (or logistic regression) for linear problems, 
+and nonlinear kernels such as the Radial Basis Function (RBF) kernel for non-linear problems.
+The RBF kernel on two samples x and x', represented as feature vectors in some input space, is defined as
+K(x,x') = exp (- ||x-x'||^2  / 2* sigma).  
+||x-x'||^2 can be considered as the squared Eucildean distance between two features. sigma is a free parameter.
+Kernel: non-linear data can be made linear with higher dimensionality
+transfermation: [x1,x2] -> [a1,a2,a3]
 
 
+WORKFLOW:
+problem : SVMs with RBF Kernels are very slow to train with lots of features or data.
+
+Data collection: Consider approximate kernal map with SGD (Stochastic Gradient Descent) using Nystorem or RBF sampler.
+                 Fit a linear classifier.
+                 
+                 
+ Features                         Data                      Model Choice
+ Many (~10k)                    Small (1k rows)           Simple, logistic or Linear SVM
+ few(<100)                      Medium (~10k)              SVM with RBF
+ few (<100)                     Many (>100k)              Add features, Logistic, Linear SVC, or Kernel Approx
+
+ -------------------------------------------- Decision Trees ----------------
+ For K nearest neighbors, training data is the model. 
+ Fitting is fast - just store data
+ Prediction can be slow - lots of distances to measure
+ Devision boundary is flexible
+ 
+ For logistic regression, model is just parameters.
+ Fitting can be slow - must find best parameters
+ Prediction is fast - calculate expected value
+ Decision boundary is simple, less flexible
+ 
+ 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
