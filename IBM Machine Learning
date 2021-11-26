@@ -1,4 +1,4 @@
-----------------------------------------------------  Course 1 --------------------------------------------------------------------------------------------------------
+------------------------------- Course 1: Exploratory Data Analysis for Machine Learning --------------------------------------------------------------------------------------------------------
 
 ----- Data Cleaning
 
@@ -97,12 +97,169 @@ two events.
 
 
 
-------------------------------------------------------------------  Course 2 --------------------------------------------------------------------------------------------------------
+-----------------------------------  Course 2 : Suprevised Machine Learning: Regression --------------------------------------------------------------------------------------------------------
 
 Supervised Machine Learning for Interpretation and Prediction
 
 interpretation can provide insight into improvements in prediction, and vice-versa. (But not all)
 
+Two types of supervised maching learning: Regression VS Classification
+
+
+-----------    Regression: outcome is continuous (numerical)
+data with outcomes + model  -----fit----> model
+data without outcomes + model ---predict---> predicted outcomes
+
+
+-----------  Classification: Categorical Answer
+Labeled data + model   -----fit----> model
+Unlabeled data + model ---predict---> predicted outcomes
+
+
+----------- Linear Regression
+y=b0+b1x
+residuals: predicted value - observed value
+
+minimizing the error function:
+J(b0,b1) =  min < 1/2m * SUM_(from i=1 to m) ( (b0 + b1 * x1_{observed}) - Y_{observed} ) ^ 2> 
+----   The 1𝑚 is to "average" the squared error over the number of components so that the number of components doesn't affect the function (see John's answer). 
+-----  So now the question is why there is an extra 1/2. In short, it doesn't matter. The solution that minimizes 𝐽 as you have written it will also minimize 2𝐽=1𝑚∑𝑖(ℎ(𝑥𝑖)−𝑦𝑖)2. The latter function, 2𝐽, may seem more "natural," but the factor of 2 does not matter when optimizing.
+------ The only reason some authors like to include it is because when you take the derivative with respect to 𝑥, the 2 goes away.
+
+Sum of Squared Error (SSE):  sum_(from i to m) (y_{b} (x^1) - y^i_{obs}) ^ 2
+Total Sum of Squre (TSS):  sum_(from i to m) ( [y_{obs}] bar - y^i_{obs}) ^ 2
+Coefficient of Determination:(R^2) = 1 - SSE/TSS =  (TSS − RSS)/TSS
+          --   the proportion of the variance for a dependent variable that's explained by an independent variable or variables in a regression model.
+
+
+---------- Training and Test splits
+
+
+---------- Cross Validation : evaluating estimator performance
+
+training data 1
+test data 1
+
+re-select 
+training data 2
+validation 2
+
+re-select
+training data 3
+validation 3
+
+There is no overlap in each signle run.
+
+complexity vs. Error
+In machine learning, model complexity often refers to the number of features or terms included in a given predictive model.
+
+overfitting: training error is low, cross validation error is high --> the variance is too high
+JUST RIGHT: both training and cross validation error are low
+underfitting: both training and cross validation error are high
+
+Cross validation approaches:
+k-fold cross validation: Using each of k subsamples as a test sample
+leave one out cross validation： Using each observation as a test sample
+stratified cross validation: k-fold cross validation with representative samples
+
+
+----------  Polynomial Regression
+
+y=b0+b1x+b2x^2+b3x^3
+
+can also include variable interactions: y=b0+b1x+b2x2+b3x1x2
 
 
 
+------------------------------------ Regularization Techniques
+
+------ Bias Variance TradeOff
+bias: is a tendency to miss
+Variance: is a tendency to be inconsistent
+
+Bias: being wrong
+Vairance: being unstanble
+Irreducible error: unavoidable randomness
+
+------ Regularization and Model Selection 
+In simple terms, regularization is tuning or selecting the preferred level of model complexity so your models are better at predicting (generalizing). 
+
+How does Regularization acoomplished?
+Regularization adds an (adjustable) regularization strength parameter directly into the cost function.
+
+M(w) = lambda * R(w).   <-- Adjusted cost function 
+
+M(w) model error
+R(w) function of estimated parameters
+lambda: regularization strengh parameter
+This lambda adds a penalty proportional to the size of the estimated model parameter, or a function of the parameter.
+
+The regularization strength parameter lambda allows us to manage the complexity tradeoff:
+-- more regularization introduces a simpler model or more bias (large lambda)
+-- less regularization introduction makes the model more complex and increase variance (small lambda)
+If our model is overfit (variance is too high), regularization can improve the generalization error and reduce variance.
+
+Regularization performs feature selections by shrinking the contribution of features.
+L1 regularization, this is accomplished by driving some coeifficients to zero.
+Feature selection can also be realized through reducing features.
+
+Reducing the number of features can prevent overfitting (high variance).
+
+------ Ridge Regression
+Ridge regression is a method of estimating the coefficients of multiple-regression models in scenarios where independent 
+variables are highly correlated. 
+
+
+------ LASSO Regression
+Lasso regression is a type of linear regression that uses shrinkage. Shrinkage is where data values are shrunk towards a central point, 
+like the mean
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------  Course 3 Suprvised Machine Learning: Classification --------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
