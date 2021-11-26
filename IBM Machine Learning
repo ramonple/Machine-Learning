@@ -379,6 +379,39 @@ Data collection: Consider approximate kernal map with SGD (Stochastic Gradient D
  Prediction is fast - calculate expected value
  Decision boundary is simple, less flexible
  
+ Node: the question 
+ branch: the spliting criteria
+ Leaves
+ 
+Advantages
+good at interpretation and visualisation
+Easy to trace back and reasoning
+cons:
+sensity to the predetermined maximum tree depth
+Too large depth -> overfit
+Too small depth -> underfit
+If the dataset is large and with hign demision, it will be slow
+
+Entropy: measures the uncertainty in a node
+Strong consistency in the node -> Low entropy
+Low consistency in the node - > high entropy
+H(x) = -sum (k=1 to N) p_k log_2 (p_k); H(x): entropy, P: probability of different class in current node
+
+Entropy Gain: entropy ( in upper level) - sum of entropy (in current level)
+G(D) = H(x) - sum (v=1 to V) |D^v|/ |D|   * H(D) ^ v. --> The larger the better
+
+
+STEP 1 : go through all the possible spliting criteria
+STEP 2: select the spliting criteria with lowest entropy in the leaf node (largest entropy gain)
+STEP 3: Repeat Step 1 & 2 UNTIL
+       a. you reach the maximum predefined depth
+       b. all the elements in a single leaf node belong to 1 class
+       
+ Entroy Gain concept is the ID3 (Iterative Dichotomiser 3) ALGORI: ID3 uses a top-down greedy approach to build a decision tree -> only for classfication
+ 
+ CART (classfication and regression tree) -> for both classification and regression
+
+Trees that predict categorical results are decision trees.
  
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
