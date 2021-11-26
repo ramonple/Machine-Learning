@@ -98,6 +98,9 @@ two events.
 
 
 -----------------------------------  Course 2 : Suprevised Machine Learning: Regression --------------------------------------------------------------------------------------------------------
+examples of models for supervised learing: regression
+1 feature => linear regresion, non-linear regression
+multiple features => linear regresion, non-linear regression
 
 Supervised Machine Learning for Interpretation and Prediction
 
@@ -219,43 +222,92 @@ like the mean
 
 
 ----------------------------------------------------  Course 3 Suprvised Machine Learning: Classification --------------------------------------------------------------------------------------------------------
+examples of models used for supervised learning: classification
+Logistic regression
+k-nearest neighbors
+support vector machines
+neural network
+decision tree
+random forest
+boosting
+ensemble models
+
+Each of these models can be used for both regression and classifcation.
+
+
+
+------------------------------------------------------------   Logistic Regression -----------
+
+Curve: S-shape
+logistic function: y = 1/ ( 1 + exp(- (-b0+b1x+eta) )    )
+odds ratio: log(p(x) / 1 - p(x) ) = b0+b1x
+
+---------------- Confusion Matrix, accuracy, specificity, precision and recall 
+
+confusion matrix ( the one shows the type I type II errors)
+                           Predicted Positive       Prediticed Negative
+Actual positive                    TP                   FN (Type II error)  --> false negative
+
+Actual Negative                FP (Type I error)         TN
+                              false postitive
+                              
+                      (True Positive Rate)  Recall or sensitivity = TP/ (TP + FN). --> correctly find the postive one when it is really positive
+
+                              Precision = TP/ (TP+FP). -->  correctly find the postive one when it is predicted postive 
+                              
+ ( False Positive Rate = 1- Specificity)    Specificity = TN/ (FP+TN)
+                              
+Accuracy = (TP+TN)/(TP+FN+TF+NF)
+
+F1 = 2 * Precision * Recall / ( Recision + Recall)
+
+
+----------------  Classification Error Metrics: ROC and Precision-Recall Curves
+
+receiver operating characteristic (ROC) 
+The ROC curve shows the trade-off between sensitivity (or TPR) and specificity (1 – FPR). 
+Classifiers that give curves closer to the top-left corner indicate a better performance.
+
+
+Precision - Recall Curve: measures trad-off betwee precision and recall
+
+ROC curve: better for data with balanced classes
+Precision-Recall curve: generally better for data with imbalanced classes
+
+
+multi-class error metircs: similar to binary versions, just expand elements as a sum
 
 
 
 
+---------------------------------------------- K Nearest Neighbors (KNN) for Classification ------------
+
+What is needed to KNN?
+a. correct value for K
+b. How to measure closeness of neighborrs
+
+Distance Measurement: 
+Euclidean Distance d= sqrt( (x1-x2)^2 + (y1-y2)^2)
+Manhattan Distance d= |x1-x2|  + |y1-y2|
+
+Scale for distance measurement:
+feature scaling
 
 
 
 
+！！！ -------------------------------------------- Support Vector Machines  SVM----------------
+In the SVM algorithm, we plot each data item as a point in n-dimensional space, with the value of each feature being the value of a particular coordinate. 
+Then, we perform classification by finding the hyper-plane that differentiates the two classes very well.
+Maximizing the distances between nearest data point (either class) and hyper-plane will help us to decide the right hyper-plane.
 
+We have a <decision boundary /decision surface > b1x1+b2x2+b0 = 0 
+we should also plot two lines which are parellel to this decision boundary, and 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Linear classifier
+Object: find the best beta to describe the margin boundary (hyper-plane)
+dis = 2/||beta|| --> Maximize 
+  => min ||Beta||^2 /2
 
 
 
