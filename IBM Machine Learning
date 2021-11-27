@@ -379,9 +379,10 @@ Data collection: Consider approximate kernal map with SGD (Stochastic Gradient D
  Prediction is fast - calculate expected value
  Decision boundary is simple, less flexible
  
+ Trees that predicts classification called the decision trees
  Node: the question 
  branch: the spliting criteria
- Leaves
+ Leaves： where we answer the question
  
 Advantages
 good at interpretation and visualisation
@@ -392,28 +393,257 @@ Too large depth -> overfit
 Too small depth -> underfit
 If the dataset is large and with hign demision, it will be slow
 
-Entropy: measures the uncertainty in a node
-Strong consistency in the node -> Low entropy
-Low consistency in the node - > high entropy
-H(x) = -sum (k=1 to N) p_k log_2 (p_k); H(x): entropy, P: probability of different class in current node
-
-Entropy Gain: entropy ( in upper level) - sum of entropy (in current level)
-G(D) = H(x) - sum (v=1 to V) |D^v|/ |D|   * H(D) ^ v. --> The larger the better
-
 
 STEP 1 : go through all the possible spliting criteria
 STEP 2: select the spliting criteria with lowest entropy in the leaf node (largest entropy gain)
 STEP 3: Repeat Step 1 & 2 UNTIL
        a. you reach the maximum predefined depth
-       b. all the elements in a single leaf node belong to 1 class
+       b. Leaf nodes are pure (only one class remains)
+       c. a preformance metric is achieved
        
- Entroy Gain concept is the ID3 (Iterative Dichotomiser 3) ALGORI: ID3 uses a top-down greedy approach to build a decision tree -> only for classfication
+Buidling the best decision tree
+-use greedy search:
+find the best split at each step
+- what defines the best split? One that maximizes the information gained from the split
+- hwo is information gained defined? 
+
+-classfication error equation: E(t) = 1-max[p(i|t)]. 1 - overall accuracy
+
+< Entropy-based splitting >
  
- CART (classfication and regression tree) -> for both classification and regression
+Entropy: measures the uncertainty in a node
+Strong consistency in the node -> Low entropy
+Low consistency in the node - > high entropy
+H(x) = -sum (i=1 to n) p(i|t) log_2 (p(i|t)); H(x): entropy, P: probability of different class in current node
+after calculating the entropy for the parent and its offsprings, we can use the classification error equation above:
+E(t) = 1-max[p(i|t)].     And then we can get the -> entropy change
+
+Splitting based on entropy allows further splits to occur
+can evetually reach goal of homogenous nodes
+
+Entropy Gain: entropy ( in upper level) - sum of entropy (in current level)
+G(D) = H(x) - sum (v=1 to V) |D^v|/ |D|   * H(D) ^ v. --> The larger the better
+
+
+Entroy Gain concept is the ID3 (Iterative Dichotomiser 3) ALGORI: ID3 uses a top-down greedy approach to build a decision tree -> only for classfication
+ 
+CART (classfication and regression tree) -> for both classification and regression
 
 Trees that predict categorical results are decision trees.
  
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Other Decision Tree Splitting Criteria
+
+< Classfication Error vs Entropy >
+Classification Error: 
+-classification error is a flat function with maximum at center
+- center represents ambiguity -- 50/50 split
+- splitting metrics favor results that are furthest away from the center
+Entropy:
+-Entropy has the maximum but is curved
+- curvature allows splitting to continue until nodes are pure
+
+The Gini index
+- in practice, Gini index often used for splitting
+-function is similar to entropy - has bulge
+-does not contains logarithm: G(t) = 1-sum(i=1 to n) p(i|t) ^2
+
+<Pros and Cons>
+problem: decision trees tend to overfit
+Small changes in data greatly affect prediction - high variance
+Solution: prune trees
+- How to decide what leaves to prune? - solution: prune based on classfication error threshold
+
+Easy to interpret and implement (if-then-else logic)
+Handle any data category: binary, ordinal, continuous
+No preprocessing or scalling require
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+
+---------------------------  Ensemble Based Methods and Bagging
+Combining models (ensemble-based methods)
+bootstrap aggregation (bagging)
+
+Decision trees tend to overfit and have high variance. Pruning helps reduce variance. Often not significant for model to generalize well.
+To solve this problem:
+create many different trees -> combine predictions to reduce variance
+< Bagging (Bootstrap Aggregation) is used when our goal is to reduce the variance of a decision tree >
+tree vote on or average result for each date point -> vote to form a single classifier
+use differnt rows and see the majority class - meta classfication
+Bagging = Bootstrap Aggregating
+
+Bagging error calculations:
+- same as decision trees:
+  easy to interpret and implement
+  Heterogeneous input data allowed, no preprocessing required
+- Specific to bagging
+  Less variability than decision trees
+  Can grow trees in parallel
+  
+--------------------------- Random Forest
+The random forest algorithm is actually a '' bagging''  algorithm 
+For n independent trees, each with variance sigma^2, the bagged variances is: sigma^2 / n
+However, bootstrap samples are correlated (rho): rho * sigma^2 + (1-rho)/n. * sigma^2
+- solution: further de-correlated trees
+- use random subset of features for each tree.
+classification:sqrt(m)
+regression: m/3.       -- m is the number of features
+
+----- this is the < 'Random Forest' >
+A decision tree combines some decisions, whereas a random forest combines several decision trees.
+A random forest is simply a collection of decision trees whose results are aggregated into one final result. 
+
+- errors are further reduced for random forest relative to Bagging.
+- Grow enough trees until error settles down.
+- Addtional trees won't improve resutls
+
+---------------------------  Bootsing and Stacking
+>>>> other meta classifiers: Boosting  -- basic idea: boosting being to built off of prior mistakes of our weak learners
+     Type: Gradient Boosting, AdaBoosting
+     The nature of boosting algorithms tends to produce good results in the presence of <outliers> and <rare events>.
+     Boosting algorithms create trees iteratively or successively by boosting observations with high residuals from the previous tree model. 
+
+Boosting is used to create a collection of predictors. In this technique, learners are learned sequentially with early learners fitting simple
+models to the data and then analysing data for errors. Consecutive trees (random sample) are fit and at every step, the goal is to improve the 
+accuracy from the prior tree.
+
+Boosting means that each tree is dependent on prior trees. The algorithm learns by fitting the residual of the trees that preceded it. 
+
+Boosting utilizess different loss functions
+margin is postive for correctly classified points and negative for wrongly classified ones
+
+AdaBoost = Adaptive Boosting  e^(-margin) -- sentive to outliers
+Gradient Boosting: binomial log likelihoold loss function : log(1+e^(-margin))- more robus to outliers than AdaBoost
+
+>>>> Stacking: combing classifiers
+
+Labelled Data --> [Base Learners]            Meta Learner
+                   Logistc Regreesion
+                   SVM                      Meta Features
+                   Random Forest     
+models of any kind can be combined to create a stacked model.
+Like bagging but not limited decision trees.
+Output of base leaners can be combined via majority vote or weighted.
+Additional hold-out data needed if meta learner parameters are used.
+Be aware of increasing model complexity
+The final prediction can be done by voting with another model
+
+
+------------------------ Unbalanced classes
+for unbalanced datasets, we can balane the size of the classes by either downsampling the larger class or unsampling the smalle one
+upsampling (copy, duplicate the minority class)
+
+steps for unbalanced datasets:
+1. do a stratified test-train split
+2. up or down sample the full dataset
+3. build models
+
+Downsamplling adds tremendous importance to the minor class, typically shooting up recall and bringing down prevision
+Upsampling mitigates some of the excessive weight on the minor class. Recall is still typically higher than precision, but the gap is lesser.
+
+How to determine to up or downsampling?
+Cross-Validation works for any global model-making choice, including sampling
+
+
+--------------------------------------------------------Course 4: Unsupervised Machine Learning-----------------------------------------------------
+
+                  Clustering                                      Dimensionality Reduction
+Examples:
+             K - means                                         Principal Components Analysis
+             Hierarchical Agglomerative Clustering             Non-nagative Matrix Factorization
+             DBSCAN                  
+             Mean Shift 
+
+
+unlabled data --fit--> model ---> new unlabeled data + model --predict--> map new data to model
+
+
+
+------------------- K - means Algorithm (for clustering)
+
+K-Means clustering is an unsupervised iterative clustering technique.
+It partitions the given data set into k predefined distinct clusters.
+A cluster is defined as a collection of data points exhibiting certain similarities.
+
+Smarter initilization of K-means clusters
+a. pick one point at random initially
+b. pick next point with probability distance(x_i)^2/sum(i=1 to n)distance(x_i)^2
+
+
+choosing the right number of clusters
+Evaluating clustering performance:
+- inertia: sum of squared distance from each point (x_i) to its cluster centriod (C_k)
+sum(i=1 to n) (x_i-C_k) ^2. smaller value corresponds to tighter clusters. 
+                            value senetive to number of points in clusters
+- Distortion: average of squared distance from each point to its cluster centriod (C_k)
+1/n * sum(i=1 to n) (x_i-C_k) ^2.  smaller value corresponds to tighter clusters. 
+                                   Doesn't generally increase as more points are added (relative to inertia)
+
+Initiate multiple times, and take the model with the best score.
+
+Introduction to K-Means Clustering
+Step 1: Choose the number of clusters k. 
+Step 2: Select k random points from the data as centroids.
+Step 3: Assign all the points to the closest cluster centroid. 
+Step 4: Recompute the centroids of newly formed clusters. 
+Step 5: Repeat steps 3 and 4.
+
+Advantages of k-means
+Relatively simple to implement.
+Scales to large data sets.
+Guarantees convergence.
+Can warm-start the positions of centroids.
+Easily adapts to new examples.
+Generalizes to clusters of different shapes and sizes, such as elliptical clusters.
+
+disadvantages:
+It requires to specify the number of clusters (k) in advance.
+It can not handle noisy data and outliers.
+It is not suitable to identify clusters with non-convex shapes.
+
+>>>>>>>>>
+Differences between KNN
+KNN: only focus on samples local distribution
+     K means k nearest neighbor, k points
+     supervised learning method require label infromation for training
+
+K-means: rely on all the samples distribution global distribution
+         k clusters
+         unsupervised learning method no need to have the label infromation for training
+
+
+
+
+-------------------  Computational hurdles of clustering algorithms
+
+Choice of distance metric is extremely important to clustering success
+
+Euclidean Distance (L2 distance): (x11, y11) and (x22, y22) is d = √[(x2 – x1)^2 + (y2 – y1)^2].
+Manhattan Distance (L1 or City Block): (X1, Y1) and (X2, Y2) is given by |X1 – X2| + |Y1 – Y2|
+>>>> cosine distance: Cos(theta) = x . y / ||x|| * ||y||  .
+
+
+-- Euclidean is useful for coodinate based measurements.
+-- Cosine is better for data such as text where location of occurrence is less important.
+-- Euclidean distance is more sensitive to curse of dimensionality.
+
+>>>>> Jaccard Distance
+Applies to sets (like word occurrence)
+ J(A,B) = 1 -  the amount of value shared / the length of total unique values 
+ 
+ 
+ 
+ 
+ -------------------------------------- Hierarchical Agglomerative Clustering
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
