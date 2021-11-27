@@ -486,8 +486,8 @@ For n independent trees, each with variance sigma^2, the bagged variances is: si
 However, bootstrap samples are correlated (rho): rho * sigma^2 + (1-rho)/n. * sigma^2
 - solution: further de-correlated trees
 - use random subset of features for each tree.
-classification:sqrt(m)
-regression: m/3.       -- m is the number of features
+classification:sqrt(m),ave
+regression: m/3, mode.       -- m is the number of features
 
 ----- this is the < 'Random Forest' >
 A decision tree combines some decisions, whereas a random forest combines several decision trees.
@@ -498,6 +498,7 @@ A random forest is simply a collection of decision trees whose results are aggre
 - Addtional trees won't improve resutls
 
 ---------------------------  Bootsing and Stacking
+SUPERVISED 
 >>>> other meta classifiers: Boosting  -- basic idea: boosting being to built off of prior mistakes of our weak learners
      Type: Gradient Boosting, AdaBoosting
      The nature of boosting algorithms tends to produce good results in the presence of <outliers> and <rare events>.
@@ -512,8 +513,44 @@ Boosting means that each tree is dependent on prior trees. The algorithm learns 
 Boosting utilizess different loss functions
 margin is postive for correctly classified points and negative for wrongly classified ones
 
-AdaBoost = Adaptive Boosting  e^(-margin) -- sentive to outliers
-Gradient Boosting: binomial log likelihoold loss function : log(1+e^(-margin))- more robus to outliers than AdaBoost
+>>>>>>>>  AdaBoost = Adaptive Boosting  e^(-margin) -- sentive to outliers
+start with weaker learners -> focus more on the one wrong ones
+Step 1: Initialize the sample weights: 
+               In first step of AdaBoost each sample is associated with a weight that indicates how important it is with regards to the classification. Initially, all the samples have identical weights (1 divided by the total number of samples).
+Step 2: Build a decision tree with each feature, classify the data and evaluate the result: 
+               Next, for each feature, we build a decision tree with a depth of 1. Then, we use every decision tree to classify the data. Afterwards, we compare the predictions made by each tree with the actual labels in the training set.
+               The feature and corresponding tree that did the best job of classifying the training samples becomes the next tree in the forest.
+Step 3: Calculate the significance of the tree in the final classification    
+               Once we have decided on a decision tree. We use the proceeding formula to calculate the amount of say the it has in the final classification.
+               significance = 1/2 log( (1-total error) / total error ). Where the total error is the sum of the weights of the incorrectly classified samples.
+Step 4: Update the sample weights so that the next decision tree will take the errors made by the preceding decision tree into account
+               We look at the samples that the current tree classified <incorrectly> and increase their associated weights using the following formula.
+               new sample weight = sample weight * e^significance
+               Then, we look at the samples that the tree classified <correctly> and decrease their associated weights using the following formula.
+               new sample weight = sample weight * e^(-significance)
+               The main take away here is that the samples which the previous stump incorrectly classified should be associated with larger sample weights and the ones it classified correctly should be associated with smaller sample weights.
+Step 5: Form a new dataset
+               We start by making a new and empty dataset that is the same size as the original. Then, imagine a roulette table where each pocket corresponds to a sample weight. We select numbers between 0 and 1 at random. The location where each number falls determines which sample we place in the new dataset.
+               Since the samples that were incorrectly classified have higher weights in relation to the others, the likelihood that the random number falls under their slice of the distribution is greater. 
+               Therefore, the new dataset will have a tendency to contain multiple copies of the samples that were misclassified by the previous tree.
+Step 6: Repeat steps 2 through 5 until the number of iterations equals the number specified by the hyperparameter (i.e. number of estimators)
+Step 7: Use the forest of decision trees to make predictions on data outside of the training set
+
+-- compared with random forest
+They are called as ensemble learning algorithms. 
+Random forest is created using a bunch of decision trees which make use of different variables or features and makes use of bagging techniques for data sample. 
+In AdaBoost, the forest is created using a bunch of what is called as decision stump.  Decision stumps are nothing but decision trees with one node and two leaves. 
+AdaBoost algorithm can be said to make decision using a bunch of decision stumps. Here are different posts on Random forest and AdaBoost.
+
+AdaBoost 
+pros:
+The accuracy of weak classifiers can be improved by using Adaboost. 
+Nowadays, Adaboost is being used to classify text and images rather than binary classification problems.
+cons:
+The main disadvantage of Adaboost is that it needs a quality dataset. 
+Noisy data and outliers have to be avoided before adopting an Adaboost algorithm.
+
+>>>>>>>>>>. Gradient Boosting: binomial log likelihoold loss function : log(1+e^(-margin))- more robus to outliers than AdaBoost
 
 >>>> Stacking: combing classifiers
 
