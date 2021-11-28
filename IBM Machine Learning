@@ -728,4 +728,30 @@ Applies to sets (like word occurrence)
    -------------------------------------- Mean Shift
    similar to k-means
    a partitioning algorithm that assigns points to nearest cluster 
+   
+   Centroid:
+    - point of highest local density
+   
+   How to calculate the local density? - evaluate weighted mean around each point.
+   
+   steps:
+   1. choose a point adn wind W
+   2. calculate the weighted mean within the window
+   3. 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+others: Boostrap
+sampling with replacement (put back,  the two sample values are independent
+
+
+
