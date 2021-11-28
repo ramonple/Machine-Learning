@@ -671,16 +671,61 @@ Applies to sets (like word occurrence)
  
  
  
- -------------------------------------- Hierarchical Agglomerative Clustering
+ -------------------------------------- Hierarchical Agglomerative Clustering --》 bottom up approach
+ Consider which distance measure should be used
+ Find closest pair, merge into a cluster 
+ keeping merging closest pairs.  (pairs can be two points or two clusters. No matter what they are, merge them.)
+ 
+ Stopping point 
+ we want to cluster distances above a pre-determined threshold
  
  
+ hierachical linkage types (to calculate the distance between two cluster)
+ single linkage: minimium pairwise distance between clusters
+ complete linkage: maximum pairwise distance between clusters
+ average linkage: average pairwise distance between clusters
+ ward linkage: merge based on best inertia
+ --- use <dengrogram> to show the clustering process
  
  
+  
+ -------------------------------------- Density-Based Spatial Clustering Applications with Noise (DBSCAN) db-scan
+ A true clustering algorithm: can have points dont belong to any cluster
  
+ points are clustered using density of local neighborhood:
+ - finds core points in high density regions and expands clusters from them
  
+ Ends when all points are classfied as either belonging to a cluster or to noise
  
- 
- 
- 
- 
+ Required inputs:
+ - metric: function to calculate distance
+ - epsilon: radius of local neighborhood -> As we mentioned, we are starting at random points and then using those points, 
+                                            we're determining if other points are within a certain distance and if they are, they become part of the cluster. 
+                                            Now this minimum distance between the points is going to be considered part of the same cluster if it's within a certain Epsilon range. 
+                                            So that's going to be our Epsilon. How far away a point needs to be, to be considered part of that cluster.
+  - N_clu: determing density threshold (for fixed eta).  ->  often seen as mean samples, which is actually the argument used for Sklearn. 
+                                                          These arguments, this input will be the minimum amount of points for a particular point to be considered a core point of a cluster. 
+                                                          Core points are going to be find by this N_clu arguments and they're going to be find as those points that have at least N_clu neighbors, including itself. 
+                                                          So if we set N_clu equal to 3, that means that that point has at least two other neighbors that are within that Epsilon distance. 
+                                                          A non-core point can still be a part of the cluster if it's in the neighborhood of that core point.  
+                                                          
+  Three possible labels for any point:
+  core: point which has more than n_clue neighbors in their eplison-neighborhood
+  density-reachable: an eplison-neighbor of a core point, and has fewer than n_clu neighbors itself
+  noise: a point that has no 《core》 points in its  eplison-neighborhood
+  
+  Strength:
+  no need to specity number of clusters (cf. k-means).  The abbreviation cf. (short for the Latin: confer/conferatur, both meaning 'compare'
+  allows for noise
+  can handle arbitary-shaped clusters
+  
+  weaknesses:
+  requires two parameters (vs. one for k-means).   
+  find appropriate values of eplison and n_clu can be difficult
+  Does not do well with clusters of different density
+  
+  
+   -------------------------------------- Mean Shift
+   similar to k-means
+   a partitioning algorithm that assigns points to nearest cluster 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
