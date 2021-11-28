@@ -735,20 +735,68 @@ Applies to sets (like word occurrence)
    How to calculate the local density? - evaluate weighted mean around each point.
    
    steps:
-   1. choose a point adn wind W
-   2. calculate the weighted mean within the window
-   3. 
+   STEP 1: Pick any random point, and place the window on that data point.
+   STEP 2: Calculate the mean of all the points lying inside this window.
+   STEP 3: Shift the window, such that it is lying on the location of the mean.
+   STEP 4: Repeat till convergence.
+   STEP 5 Repeat steps 1 - 4 for all data points
+   STEP 6 Data points that lead to same made are grouped into same cluster
+   
+   No cluster number of distance parameters needed.
+
+Mean shift is a procedure for locating the maxima—the modes—of a density function given discrete data sampled from that function
+This is an iterative method, and we start with an initial estimate x
+
+
+The weighted mean of the density in the window determined by K is
+m(x) = sum (xi belongs to W) xi * K(xi-x)
+      --------------------------------------
+          sum (xi belongs to W) K(xi-x). 
+m(x) is the new mean
+sum(xi belongs to W) --> sum over points in window
+K  weighting (kernel) function
+x: previous mean
+The difference between m(x) - x is called mean shift in Fukunaga and Hostetler.  
+
+strengths:
+- model free: does not assume number or shape of clusters
+- can use just one parameter: window size
+- robust to outlier
+
+weakness:
+- result depends on window size
+- selection of window size is not easy
+- can be slow to implement, complexity proportional to mn^2 (for m iterations and n data set)
+
+   
+------------------------------------------Dimensionality Reduction----------------------------------------------------
+Principal Component Analysis (PCA)
+
+Single Value Decomposition (SVD)
+- SVD is a matrix factorization method normally used for PCA
+- Does not require a square data set
+- SVD is used by Scikit-learn for PCA   
+
+
+PCA and SVD seek to find the vectors that capture the most variance.
+Variance is sensitive to axis scale.
    
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
+------ Moving beyong Linearity
+- transformations calculated with PCA/SVD are linear
+- Data can have non-linear features
+- This can cause dimensionality reduction to fail.
+
+Solutions:
+- Kernal PCA: kernels can be used to perform non-linear PCA
+
+
+------------------------------------------------------Course 5:  Deep Learning and Reinforcement Learning. ---------------------------------------------------------------------------------------------------------------------------
+
+------------- Neural Networks
+
+
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 others: Boostrap
 sampling with replacement (put back,  the two sample values are independent
