@@ -1,0 +1,21 @@
+https://www.analyticsvidhya.com/blog/2017/09/common-machine-learning-algorithms/           (R and Python code)
+https://www.simplilearn.com/10-algorithms-machine-learning-engineers-need-to-know-article
+
+------------- Supervised Machine Learning
+Regression & Classification
+
+>>> Regression:
+linear regression, polynomial regression, ridge regression, LASSO regression
+
+>>> Classification:
+logistic regression (ROC curve) 
+KNN:  can be applied to both classification and regression problems
+SVM  (entropy)
+Decision Trees
+
+Bagging (Boostrap aggregating) :
+ a. Random forest
+ b. AdaBoost ( relationship with Random forest)
+ c. Gradient Boosting
+ 
+ 
