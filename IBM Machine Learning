@@ -609,9 +609,19 @@ b. pick next point with probability distance(x_i)^2/sum(i=1 to n)distance(x_i)^2
 
 choosing the right number of clusters
 Evaluating clustering performance:
-- inertia: sum of squared distance from each point (x_i) to its cluster centriod (C_k)
+- inertia: Inertia measures how well a dataset was clustered by K-Means.
+ It is calculated by measuring the distance between each data point and its centroid, squaring this distance, 
+ and summing these squares across one cluster.
+ 
 sum(i=1 to n) (x_i-C_k) ^2. smaller value corresponds to tighter clusters. 
                             value senetive to number of points in clusters
+                            
+ A good model is one with low inertia AND a low number of clusters (K). 
+  However, this is a tradeoff because as K increases, inertia decreases.
+To find the optimal K for a dataset, use the <Elbow> method; find the point where the decrease in inertia begins to slow.  
+  
+  
+                            
 - Distortion: average of squared distance from each point to its cluster centriod (C_k)
 1/n * sum(i=1 to n) (x_i-C_k) ^2.  smaller value corresponds to tighter clusters. 
                                    Doesn't generally increase as more points are added (relative to inertia)
@@ -770,7 +780,9 @@ weakness:
 
    
 ------------------------------------------Dimensionality Reduction----------------------------------------------------
-Principal Component Analysis (PCA)
+Principal Component Analysis (PCA):
+a technique for reducing the dimensionality of such datasets, increasing interpretability but at the same time minimizing information loss. 
+It does so by creating new uncorrelated variables that successively maximize variance. 
 
 Single Value Decomposition (SVD)
 - SVD is a matrix factorization method normally used for PCA
