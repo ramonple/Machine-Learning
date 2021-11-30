@@ -1,7 +1,8 @@
 https://www.analyticsvidhya.com/blog/2017/09/common-machine-learning-algorithms/           (R and Python code)
 https://www.simplilearn.com/10-algorithms-machine-learning-engineers-need-to-know-article
 
-------------- Supervised Machine Learning
+------------------------------------- Supervised Machine Learning
+
 Regression & Classification
 
 >>> Regression:
@@ -19,3 +20,17 @@ Bagging (Boostrap aggregating) :
  c. Gradient Boosting
  
  
+-------------------------------------  UnSupervised Machine Learning
+
+              < Clustering >                                      < Dimensionality Reduction >
+Examples:
+             K - means                                         Principal Components Analysis
+             Hierarchical Agglomerative Clustering             Non-nagative Matrix Factorization
+             DBSCAN                  
+             Mean Shift 
+
+K - means: Inertia, --> differences with KNN
+    --> Distance metrics: Euclidean, Mahattan, Cosine
+    
+Mean Shift: highest density to be the centroid, 
+
