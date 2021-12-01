@@ -13,6 +13,7 @@ logistic regression (ROC curve)
 KNN:  can be applied to both classification and regression problems
 SVM  (entropy)
 Decision Trees
+Navie Bayes
 
 Bagging (Boostrap aggregating) :
  a. Random forest
