@@ -582,6 +582,32 @@ How to determine to up or downsampling?
 Cross-Validation works for any global model-making choice, including sampling
 
 
+
+
+------------------------- self learning
+Naïve Bayes algorithm is a <supervised>learning algorithm, which is based on Bayes theorem and used for solving <classificatio> problems.
+
+It is mainly used in <text> classification that includes a high-dimensional training dataset.
+Naïve Bayes Classifier is one of the simple and most effective Classification algorithms which helps in building the fast machine learning models
+that can make quick predictions.
+It is a probabilistic classifier, which means it predicts on 《the basis of the probability》 of an object.
+Some popular examples of Naïve Bayes Algorithm are spam filtration, Sentimental analysis, and classifying articles.
+
+
+
+
+Naïve: It is called Naïve because it assumes that the occurrence of a certain feature is <independent> of the occurrence of other features. 
+Such as if the fruit is identified on the bases of color, shape, and taste, then red, spherical, and sweet fruit is recognized as an apple. 
+Hence each feature individually contributes to identify that it is an apple without depending on each other.
+
+Bayes: It is called Bayes because it depends on the principle of Bayes' Theorem.
+
+
+
+
+
+
+
 --------------------------------------------------------Course 4: Unsupervised Machine Learning-----------------------------------------------------
 
                   Clustering                                      Dimensionality Reduction
