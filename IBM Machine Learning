@@ -371,7 +371,21 @@ Data collection: Consider approximate kernal map with SGD (Stochastic Gradient D
  
  
  ---------- SVM Kernels ----------
+ A kernel transforms an input data space into the required form. 
+ Here, the kernel takes a low-dimensional input space and transforms it into a higher dimensional space
  
+ a. Linear Kernel 
+ A linear kernel can be used as normal dot product any two given observations. The product between two vectors is 
+ the sum of the multiplication of each pair of input values.
+ K(x, xi) = sum(x * xi)
+ 
+ b. Polynomial Kernel
+ A polynomial kernel is a more generalized form of the linear kernel. 
+ The polynomial kernel can distinguish curved or nonlinear input space.
+ K(x,xi) = 1 + sum(x * xi)^d
+ 
+ c. Radial Basis Function Kernel
+ K(x,xi) = exp(-gamma * sum((x – xi^2))
  
 
  -------------------------------------------- Decision Trees ----------------
