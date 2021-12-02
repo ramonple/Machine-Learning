@@ -367,6 +367,12 @@ Data collection: Consider approximate kernal map with SGD (Stochastic Gradient D
  Many (~10k)                    Small (1k rows)           Simple, logistic or Linear SVM
  few(<100)                      Medium (~10k)              SVM with RBF
  few (<100)                     Many (>100k)              Add features, Logistic, Linear SVC, or Kernel Approx
+ 
+ 
+ 
+ ---------- SVM Kernels ----------
+ 
+ 
 
  -------------------------------------------- Decision Trees ----------------
  For K nearest neighbors, training data is the model. 
