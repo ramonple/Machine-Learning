@@ -12,7 +12,7 @@ linear regression, polynomial regression, ridge regression, LASSO regression
 logistic regression (ROC curve) 
 KNN:  can be applied to both classification and regression problems
 SVM  (entropy) Kernel
-Decision Trees
+Decision Trees (Entropy)
 Navie Bayes
 
 Bagging (Boostrap aggregating) :
