@@ -11,7 +11,7 @@ linear regression, polynomial regression, ridge regression, LASSO regression
 >>> Classification:
 logistic regression (ROC curve) 
 KNN:  can be applied to both classification and regression problems
-SVM  (entropy)
+SVM  (entropy) Kernel
 Decision Trees
 Navie Bayes
 
