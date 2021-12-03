@@ -857,7 +857,22 @@ Solutions:
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 others: Boostrap
-sampling with replacement (put back,  the two sample values are independent
+The bootstrap method is a <resampling> technique used to estimate statistics on a population by sampling a dataset with replacement.
+
+1. Choose a number of bootstrap samples to perform
+2. Choose a sample size
+3. For each bootstrap sample
+   Draw a sample with replacement with the chosen size
+   Calculate the statistic on the sample
+4. Calculate the mean of the calculated sample statistics.
 
 
+What is Bootstrap Sampling in Statistics and Machine Learning?
+Bootstrap sampling is used in a machine learning ensemble algorithm called bootstrap aggregating (also called bagging). 
+It helps in avoiding overfitting and improves the stability of machine learning algorithms.
+
+In bagging, a certain number of equally sized subsets of a dataset are extracted with replacement. 
+Then, a machine learning algorithm is applied to each of these subsets and the outputs are ensembled.
+
+Original Data -> Boostrapping -> Aggregating -> Bagging
 
