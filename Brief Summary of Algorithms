@@ -35,3 +35,28 @@ K - means: Inertia, --> differences with KNN
     
 Mean Shift: highest density to be the centroid, 
 
+
+Common Steps:
+
+1. Determine whehter the data is labelled or not -> Labelled: Supervised / Unlablled: Unsupervised
+
+2. Selecting the specific algorithms
+
+3. Feature Selection
+
+4. selecting the train set, test set and the validation set (60%-20%-20%) - cross validation
+
+5. Pre-processing: categorical variable -> dummy variable
+
+6. Parameter Tuning （Train and adjust model parameters）
+
+7. using testing data to make predictions and check the performance of the model
+
+
+1 - Data Collection.
+2 - Data Preparation.
+3 - Choose a Model.
+4 - Train the Model.
+5 - Evaluate the Model.
+6 - Parameter Tuning.
+7 - Make Predictions.
