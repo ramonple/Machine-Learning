@@ -140,6 +140,9 @@ Coefficient of Determination:(R^2) = 1 - SSE/TSS =  (TSS − RSS)/TSS
 
 ---------- Cross Validation : evaluating estimator performance
 
+Cross-validation is a [ resampling method ] that uses different portions of the data to test and train a model on different iterations
+
+
 training data 1
 test data 1
 
@@ -422,7 +425,7 @@ STEP 3: Repeat Step 1 & 2 UNTIL
        c. a preformance metric is achieved
        
 Buidling the best decision tree
--use greedy search:
+- use greedy search:
 find the best split at each step
 - what defines the best split? One that maximizes the information gained from the split
 - hwo is information gained defined? 
